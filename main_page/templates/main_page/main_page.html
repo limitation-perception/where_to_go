@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero">
+        <h1 class="title">Куди піти сьогодні?</h1>
+        <p class="description">
+            Не можеш вирішити? Додай улюблені місця з рейтингом, а ми випадково оберемо одне з них.
+            Чим вищий рейтинг, тим більший шанс.
+        </p>
+
+        <form action="{% url 'main_page:main' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn">🎲 Куди піти сьогодні?</button>
+        </form>
+    </section>
+
+    {% if place %}
+        <section class="result">
+            <p class="result-label">Сьогодні йдемо в</p>
+            {% include "places_list/place_preview.html" with place=place %}
+        </section>
+    {% endif %}
+{% endblock %}
