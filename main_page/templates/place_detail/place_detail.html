@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Where to go — {{ place.name }}{% endblock %}
+
+{% block content %}
+    <a class="back-link" href="{% url 'main_page:show_places' %}">← До всіх місць</a>
+
+    {% include "places_list/place_preview.html" with place=place full=True %}
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Where to go{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+{% with current=request.resolver_match.url_name %}
+<header class="header">
+    <a class="logo" href="{% url 'main_page:main' %}">📍 Where to go</a>
+    <nav class="menu">
+        <a class="menu-item {% if current == 'main' %}active{% endif %}" href="{% url 'main_page:main' %}">Головна</a>
+        <a class="menu-item {% if current == 'show_places' %}active{% endif %}" href="{% url 'main_page:show_places' %}">Усі місця</a>
+        <a class="menu-item {% if current == 'add_places' %}active{% endif %}" href="{% url 'main_page:add_places' %}">Додати місце</a>
+    </nav>
+</header>
+{% endwith %}
+
+<main class="container">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="footer">
+    Сайт створено у вересні 2026 року · limitation-perception
+</footer>
+</body>
+</html>

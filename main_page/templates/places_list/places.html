@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Where to go — місця{% endblock %}
+
+{% block content %}
+    <h1 class="title">Усі місця</h1>
+
+    <ul class="places">
+        {% for place in places %}
+            <li>
+                {% include "places_list/place_preview.html" with place=place %}
+            </li>
+        {% empty %}
+            <li class="card empty">Місць ще немає.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
